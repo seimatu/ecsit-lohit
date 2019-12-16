@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Create New one</h1>
+    <div style="width: 70%; margin: 0px auto;">
+        <div>
+            <div style="margin: 60px 20px;">
+        <form action="{%url 'blogs:new' %}" method="POST">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button type="submit" class="btn">save</button>
+        </form>
+    </div>
+    <div style="text-align: center; margin-top: 50px">
+    <a href="{%url 'blogs:index'%}">Back to home</a>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
