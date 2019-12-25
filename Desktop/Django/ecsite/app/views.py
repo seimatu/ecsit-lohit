@@ -1,6 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404,render,redirect
 from django.contrib.auth import authenticate,login
 from .forms import CustomUserCreationForm
+from .models import Product
 # Create your views here.
 def signup(request):
     if request.method=='POST':
@@ -19,4 +20,13 @@ def signup(request):
 
 
 def index(request):
-    return render(request,'app/index.html')
+    products=Product.objects.all().order_by('-id')
+    return render(request,'app/index.html',{'products':products})
+
+
+def detail(request,product_id):
+    product=get_object_or_404(Product,pk=product_id)
+    context={
+        'product':product,
+    }
+    return render(request,'app/detail.html', context)

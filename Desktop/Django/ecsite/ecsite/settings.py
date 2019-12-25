@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     'users',
     'app',
 ]
+NUMBER_GROUPING=3
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,3 +126,7 @@ AUTH_USER_MODEL='users.User'
 LOGIN_URL='app:login'
 LOGIN_REDIRECT_URL='app/index'
 LOGOUT_REDIRECT_URL='app/index'
+
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_URL='/media/'
+

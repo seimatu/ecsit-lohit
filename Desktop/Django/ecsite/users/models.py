@@ -4,6 +4,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.mail import send_mail
 from django.utils import timezone
+from app.models import Product
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -45,10 +46,17 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     objects=UserManager()
 
-    USERNAME_FIELD="email"
-    EMAIL_FIELD="email"
+    USERNAME_FIELD = "email"
+    EMAIL_FIELD = "email"
     REQUIRED_FIELDS=[]
 
     class Meta:
         verbose_name="user"
         verbose_name_plural="users"
+
+class User(AbstractBaseUser,PermissionsMixin):
+    #カスタムユーザーモデル
+    initial_point=10000
+    email=models.EmailField("Mailadress",unique=True)
+    point=models.PositiveIntegerField(default=initial_point)
+    fav_products=models.ManyToManyField(Product,blank=True)
