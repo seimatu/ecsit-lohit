@@ -1,0 +1,19 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+
+  <form class="form-signin" method="POST">{% csrf_token %}
+      {% if form.errors %}
+        <p>Did not much username or password</p>
+      {% endif %}
+      <h2>Login</h2>
+      <label>username</label>
+      <input name="username">
+      <br>
+      <label>password</label>
+      <input type="password" name="password">
+      <br>
+      <input type="submit" value="login">
+  </form>
+
+{% endblock %}
