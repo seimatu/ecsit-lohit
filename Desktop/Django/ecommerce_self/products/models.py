@@ -20,4 +20,17 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class User(models.Model):
+    firstname=models.CharField(max_length=50)
+    lastname=models.CharField(max_length=50)
+    address1=models.CharField(max_length=100)
+    address2=models.CharField(max_length=100)    
+    email=models.EmailField()
+    phonenumber=models.IntegerField()
+
+    def __str__(self):
+        return self.firstname
+    
+
     
