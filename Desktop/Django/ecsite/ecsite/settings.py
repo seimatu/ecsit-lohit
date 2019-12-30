@@ -37,11 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'users',
     'app',
 ]
 NUMBER_GROUPING=3
+AUTH_USER_MODEL='users.User'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,11 +124,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-AUTH_USER_MODEL='users.User'
-LOGIN_URL='app:login'
-LOGIN_REDIRECT_URL='app/index'
-LOGOUT_REDIRECT_URL='app/index'
+STATICFILES_DIRS=(
+    os.path.join(BASE_DIR, "static"),
+)
+
+LOGIN_URL= 'app:login'
+LOGIN_REDIRECT_URL= 'app:index'
+LOGOUT_REDIRECT_URL= 'app:index'
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
 
+SESSION_SAVE_EVERY_REQUEST=True

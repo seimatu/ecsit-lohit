@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 {% load humanize %}
 
 <!DOCTYPE html>
@@ -13,17 +13,25 @@
 <body>
     <header>
         <div class="container">
-            <h1><a href="{%url 'app:index'%}">Djamazon</a></h1>
+            <h1><a href="{% url 'app:index' %}">Djamazon</a></h1>
             <div class="header-menu">
+                <span>Point:{{ user.point | intcomma }}</span>
+                <span><a href="{%url 'app:fav_products'%}">Favorite</a></span>
+                <span><a href="{%url 'app:cart' %}">Cart</a></span>
+                <span><a href="">Orderhistory</a></span>
                 {%if request.user.is_authenticated%}
-                <a href="{%url 'app:logout'%}">Logout</a>
+                    <span><a href="{% url 'app:logout' %}">Logout</a></span>
                 {%else%}
-                <a href="{%url 'app:login'%}">Login</a>
+                    <span><a href="{% url 'app:login' %}">Login</a></span>
+                    <span><a href="{% url 'app:signup' %}">Newuser</a></span>
                 {%endif%}
             </div>
         </div>
     </header>
     <div class="container">
+        {% for message in messages %}
+        <p class="message-{{message.tags}}">{{message}}</p>
+        {%endfor%}
         {% block content %}{% endblock %}
     </div>
 </body>

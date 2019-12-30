@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
-from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.base_user import BaseUserManager,AbstractBaseUser
 from django.core.mail import send_mail
 from django.utils import timezone
 from app.models import Product
@@ -32,6 +31,8 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_staff',True)
         extra_fields.setdefault('is_superuser',True)
         if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True')
+        if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True')
         return self._create_user(email,password, **extra_fields)
 
@@ -40,6 +41,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     initial_point=50000
     email=models.EmailField("mailadress",unique=True)
     point=models.PositiveIntegerField(default=initial_point)
+    fav_products=models.ManyToManyField(Product,blank=True)
     is_staff=models.BooleanField("is_staff",default=False)
     is_active=models.BooleanField("is_active",default=True)
     deta_joined=models.DateTimeField("date_joined",default=timezone.now)
@@ -53,10 +55,3 @@ class User(AbstractBaseUser,PermissionsMixin):
     class Meta:
         verbose_name="user"
         verbose_name_plural="users"
-
-class User(AbstractBaseUser,PermissionsMixin):
-    #カスタムユーザーモデル
-    initial_point=10000
-    email=models.EmailField("Mailadress",unique=True)
-    point=models.PositiveIntegerField(default=initial_point)
-    fav_products=models.ManyToManyField(Product,blank=True)

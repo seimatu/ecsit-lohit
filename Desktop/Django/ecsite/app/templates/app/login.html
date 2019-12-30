@@ -1,18 +1,19 @@
 {% extends "app/base.html" %}
 
 {% block content %}
+
 <form class="form-signin" method="post">{% csrf_token %}
     {% if form.errors %}
       <p>Didn't much</p>
     {% endif %}
-    <h2>Login</h2>
-    <label>meiladress</label>
-<input name="username"><!--emailではない-->
-<br>
-<label>Password</label>
-<input type="password" neme='password'>
-<br>
-<input type="submit" value="Login">
+  <h2>Login</h2>
+  <label>meiladress</label>
+  <input name="username"><!--emailではない-->
+  <br>
+  <label>Password</label>
+  <input type="password" neme='password'>
+  <br>
+  <input type="submit" value="Login">
 </form>  
 
 {% endblock %}

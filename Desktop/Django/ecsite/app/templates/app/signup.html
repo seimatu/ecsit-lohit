@@ -2,7 +2,8 @@
 {% block content %}
   
 <h2>register user</h2>
-<form method="post" action="{%url 'app:signup'%}">{% csrf_token %}
+
+<form method="post" action="{% url 'app:signup' %}">{% csrf_token %}
     <label>Mailadress</label>
     {{form.email}}
     {{form.email.errors}}

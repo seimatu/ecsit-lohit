@@ -9,7 +9,7 @@ from .models import User
 class MyUserChangeFrom(UserChangeForm):
     #User情報を変更するフォーム
     class Meta:
-        models=User
+        model=User
         fields='__all__'
 
 class MyUserCreationForm(UserCreationForm):
@@ -21,13 +21,13 @@ class MyUserCreationForm(UserCreationForm):
 class MyUserAdmin(UserAdmin):
     #カスタムユーザーモデルのAdmin
     fieldsets=(
-        (None,{'fields':('email','password')}),
+        (None,{'fields':('email','password','fav_products')}),
         (_('permissions'),{'fields':('is_active','is_staff','is_superuser','groups','user_parmissions')}),
         (_('Inportant datas'),{'fields':('last_login','date_joined')}),
     )
     add_fieldsets=(
         (None,{
-            'class':('wide',),
+            'classes':('wide',),
             'fields':('email','password1','password2'),
         }),
     )
@@ -35,7 +35,7 @@ class MyUserAdmin(UserAdmin):
     add_form=MyUserCreationForm
     list_display=('email','is_staff')
     list_filter=('is_staff','is_superuser','is_active','groups')
-    search_fields=('emal',)
+    search_fields=('email',)
     ordering=('email',)
 
 admin.site.register(User,MyUserAdmin)
