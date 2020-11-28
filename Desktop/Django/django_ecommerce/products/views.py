@@ -9,3 +9,5 @@ from products.models import Product
 class Home(ListView):
     model=Product
     templates_name='products/product_list.html'
+
+    

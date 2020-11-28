@@ -1,0 +1,22 @@
+{% extends 'projects/base.html' %}
+{%block content%}
+
+    <h1>Projects</h1>
+    <div class="container">
+            <div class="row">
+                    {% for project in projects %}
+                    <div class="col-md-4">
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.description }}</p>
+                <img class="img-fluid" src="{{project.image.url}}"i>
+               <a href='{% url "project_detail" project.pk %}'>Read more</a>
+
+                </div>
+                    {%endfor%}
+                </div> 
+              </div>
+    </div>
+            
+            </div>
+{%endblock%}
+   

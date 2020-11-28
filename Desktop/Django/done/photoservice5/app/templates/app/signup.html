@@ -22,4 +22,28 @@
 
 <p><a href="{%url 'app:login'%}">Registered here</a></p>
 
+{%endblock%}{%extends 'app/base.html'%}
+{%block content%}
+
+<h2>Register</h2>
+
+<form method="post" action="{%url 'app:signup'%}">
+    {%csrf_token%}
+    <label>User name</label>
+    {{form.username}}
+    {{form.username.errors}}
+    <br>
+    <label>Password</label>
+    {{form.password1}}
+    {{form.password1.errors}}
+    <br>
+    <label>Password(check)</label>
+    {{form.password2}}
+    {{form.password2.errors}}
+    <br>
+    <input type="submit" value="Register">
+</form>
+
+<p><a href="{%url 'app:login'%}">Registered here</a></p>
+
 {%endblock%}

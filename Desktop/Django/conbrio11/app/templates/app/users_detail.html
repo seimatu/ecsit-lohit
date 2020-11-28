@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+{% block content %}
+
+<h6 class="plan-name">@{{user.username}}</h6>
+
+{% if category %}
+<h5>{{category.title}}</h5>
+{%endif%}
+  
+<div class="container">
+    <div class="row">
+        {% for product in object_list %}
+         {%csrf_token%}
+        <div class="col-4">
+            <img src="media/{{ product.mainimage }}" style="width: 300px; height: auto;">
+            <p>{{ product.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{%endblock%}
